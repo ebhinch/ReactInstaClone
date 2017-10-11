@@ -1,28 +1,78 @@
 import React, { Component } from 'react';
 import Comment from './Comment';
 import { FaHeartO, FaCommentO } from 'react-icons/lib/fa'
+import styled from 'styled-components';
+import { FlexRow } from "../styled-components/FlexContainers"
+import {FlexColumn } from "../styled-components/FlexContainers"
+
+const PostDiv = FlexColumn.extend `
+  border-radius: 2px;
+  border: 1px solid grey;
+  margin: 20px auto;
+  width: 45%;
+  max-width: 600px;
+  p {
+    text-align: left;
+  }
+`
+
+const TitleDiv = FlexRow.extend `
+  justify-content: left;
+  margin-top: 5px;
+  img {
+    height: 40px;
+    width: 40px;
+    // margin-top: 5px;
+    margin-left: 5px;
+  }
+  p {
+    font-size: 16px;
+    margin-left: 2px;
+  }
+`
+
+const ImageDiv = styled.div`
+  img{
+    max-width: 600px;
+    width: 100%;
+  }
+`
+
+const CaptionP = FlexRow.extend `
+  text-align: left;
+  margin-left: 5px;
+`
+const IconDiv = FlexRow.extend `
+  display: flex;
+  justify-content: left;
+  svg{
+    padding: 5px;
+    height: 2em;
+    width: 2em; 
+  }
+`
 
 class Post extends Component{
 
   render(){
     const { post } = this.props;
     return(
-      <div>
-        <div>
+      <PostDiv>
+        <TitleDiv>
           <img src={post.user.profile_pic} alt={post.user.username} />
           <p>{post.user.username}</p>
-        </div>
-        <div>
+        </TitleDiv>
+        <ImageDiv>
           <img src={post.image.url} />
-          <p>{post.caption}</p>
-        </div>
-        <div>
+          <CaptionP>{post.caption}</CaptionP>
+        </ImageDiv>
+        <IconDiv>
           <FaHeartO />
           <FaCommentO />
-        </div>
+        </IconDiv>
         <p>{post.likes.length} likes</p>
-        {post.comments.map((comment,i) => <Comment key={i} comment={comment}/>)}
-      </div>
+          {post.comments.map((comment,i) => <Comment key={i} comment={comment}/>)}
+      </PostDiv>
     )
   }
 }
