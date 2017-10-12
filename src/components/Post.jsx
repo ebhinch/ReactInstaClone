@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Comment from './Comment';
 import styled from 'styled-components';
 import { FaHeartO, FaCommentO } from 'react-icons/lib/fa'
-import styled from 'styled-components';
 import { FlexRow } from "../styled-components/FlexContainers"
 import {FlexColumn } from "../styled-components/FlexContainers"
 
