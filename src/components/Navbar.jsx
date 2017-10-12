@@ -2,66 +2,56 @@ import React, { Component } from 'react';
 import { FaInstagram, FaUser, FaHeartO, FaCompass, FaSearch } from 'react-icons/lib/fa';
 import styled from 'styled-components';
 
-const Nav = styled.div`
-  background-color: white;
+const FlexRow = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 26px 5vw;
-  width: 90vw;
-  height: 25px;
-  border-bottom: 1px solid rgba(0,0,0,.0975);
-
-  p{
-    font-size: 1.75rem;
-    font-family: 'Oleo Script', cursive;
-    margin: 0;
-    svg{
-      margin-bottom: 5px;
-    }
-  }
+  flex-direction: row;
 `
 
-const SearchContainer = styled.div`
-  background: #fafafa;
-  border: 1px solid #dbdbdb;
-  width: 25%;
-  padding: 7px;
-  border-radius: 3px;
-  color: #999;
-  svg{
-    margin-bottom: 5px;
-  }
-  input{
-    border: none;
-    font-weight: 300;
-    background: transparent;
-    text-align: center;
-  }
-`;
+const NavBar = FlexRow.extend`
 
-const IconsContainer = styled.div`
-  width: 25%;
+  font-size: 24px;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  background-color: white;
+  border-bottom: .5px solid grey;
+  margin-bottom: 10px;
+  box-shadow: 2px 2px 2px grey;
+  `
+const SearchBar = styled.div`
   display: flex;
-  justify-content: space-around;
-`;
 
-class Navbar extends Component{
-  render(){
+`
+
+const IconBar = styled.div`
+  display: flex;
+`
+
+
+class Navbar extends Component {
+  render() {
     return (
-      <Nav>
+      <NavBar>
+
         <p><FaInstagram /> | Instaclone</p>
-        <SearchContainer>
-          <FaSearch/><input type="text" placeholder="Search"/>
-        </SearchContainer>
-        <IconsContainer>
-          <FaCompass size={28} />
-          <FaHeartO size={28} />
-          <FaUser size={28} />
-        </IconsContainer>
-      </Nav>
+
+        <SearchBar>
+          <p><FaSearch /><input type="text" /></p>
+        </SearchBar>
+
+        <IconBar>
+          <p>
+            <FaCompass />
+            <FaHeartO />
+            <FaUser />
+          </p>
+
+        </IconBar>
+
+      </NavBar>
+
     );
   }
 }
 
 export default Navbar
+

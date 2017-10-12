@@ -2,6 +2,56 @@ import React, { Component } from 'react';
 import Comment from './Comment';
 import styled from 'styled-components';
 import { FaHeartO, FaCommentO } from 'react-icons/lib/fa'
+import styled from 'styled-components';
+import { FlexRow } from "../styled-components/FlexContainers"
+import {FlexColumn } from "../styled-components/FlexContainers"
+
+const PostDiv = FlexColumn.extend `
+  border-radius: 2px;
+  border: 1px solid grey;
+  margin: 20px auto;
+  width: 45%;
+  max-width: 600px;
+  p {
+    text-align: left;
+  }
+`
+
+const TitleDiv = FlexRow.extend `
+  justify-content: left;
+  margin-top: 5px;
+  img {
+    height: 40px;
+    width: 40px;
+    // margin-top: 5px;
+    margin-left: 5px;
+  }
+  p {
+    font-size: 16px;
+    margin-left: 2px;
+  }
+`
+
+const ImageDiv = styled.div`
+  img{
+    max-width: 600px;
+    width: 100%;
+  }
+`
+
+const CaptionP = FlexRow.extend `
+  text-align: left;
+  margin-left: 5px;
+`
+const IconDiv = FlexRow.extend `
+  display: flex;
+  justify-content: left;
+  svg{
+    padding: 5px;
+    height: 2em;
+    width: 2em; 
+  }
+`
 
 const PostContainer = styled.div`
   background-color: #fff;
@@ -60,24 +110,22 @@ class Post extends Component{
       }
     },"");
     return(
-      <PostContainer>
-        <PostUser>
+      <PostDiv>
+        <TitleDiv>
           <img src={post.user.profile_pic} alt={post.user.username} />
-          <span>{post.user.username}</span>
-        </PostUser>
-        <PostContent>
+          <p>{post.user.username}</p>
+        </TitleDiv>
+        <ImageDiv>
           <img src={post.image.url} />
-        </PostContent>
-        <PostInfo>
-          <p>{post.caption}</p>
-          <PostActions>
-            <FaHeartO size={35} />
-            <FaCommentO size={35} />
-          </PostActions>
-          <p><strong>{likes}</strong> like this</p>
+          <CaptionP>{post.caption}</CaptionP>
+        </ImageDiv>
+        <IconDiv>
+          <FaHeartO />
+          <FaCommentO />
+        </IconDiv>
+        <p>{post.likes.length} likes</p>
           {post.comments.map((comment,i) => <Comment key={i} comment={comment}/>)}
-        </PostInfo>
-      </PostContainer>
+      </PostDiv>
     )
   }
 }
